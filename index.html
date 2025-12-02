@@ -55,7 +55,7 @@
         // Vérifie si une langue est stockée ET si elle est valide
         if (storedLang && VALID_LANGUAGES.includes(storedLang)) {
             console.log(`Préférence trouvée et valide: ${storedLang}. Redirection immédiate.`);
-            window.location.href = `index-${storedLang}.html`;
+            window.location.href = `hub-${storedLang}.html`;
         } else if (storedLang) {
              // Nettoie les anciennes préférences si elles sont invalides
             localStorage.removeItem(LANG_KEY);
