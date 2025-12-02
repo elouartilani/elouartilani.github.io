@@ -1,0 +1,236 @@
+/* =========================
+   🎨 VARIABLES GLOBALES (THÈME SOMBRE)
+   ========================= */
+:root {
+    --primary-color: #1e90ff;
+    /* action buttons */
+    --background-color: #050505;
+    /* fond principal très sombre */
+    --card-background: #0f0f10;
+    /* fond des cartes / conteneurs */
+    --text-color: #e7e7e7;
+    /* texte clair mais pas pur blanc */
+    --muted-color: #9a9a9a;
+    /* texte secondaire */
+    --border-color: rgba(255, 255, 255, 0.04);
+    --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.6);
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --radius: 14px;
+    --max-content-width: 900px;
+    --container-gap: clamp(16px, 3vw, 40px);
+}
+
+/* Optionnel : si l'utilisateur a une préférence light, on peut basculer :
+   ajouter la classe .light-theme sur <html> pour revenir au thème clair */
+.light-theme {
+    --primary-color: #007bff;
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --text-color: #343a40;
+    --muted-color: #6c757d;
+    --border-color: rgba(0, 0, 0, 0.06);
+    --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Respecter préférence système si souhaité (dark preferred by default here) */
+@media (prefers-color-scheme: light) {
+    :root:not(.light-theme) {
+        /* si le système veut le clair, on garde la possibilité:
+           (ici on ne force rien — .light-theme reste explicite) */
+    }
+}
+
+/* =========================
+   📄 GLOBAL / LAYOUT
+   ========================= */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.45;
+    font-size: 16px;
+    /* base */
+}
+
+/* Centrage vertical et horizontal flexible
+   min-height permet aux petits écrans de scroller correctement */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: clamp(12px, 3vw, 40px);
+}
+
+/* =========================
+   🖼️ CONTENEUR PRINCIPAL (CARTE)
+   ========================= */
+.container {
+    width: min(var(--max-content-width), 98%);
+    max-width: var(--max-content-width);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent),
+        var(--card-background);
+    padding: clamp(20px, 4vw, 80px);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Pour les écrans très larges : largeur moins compacte */
+@media (min-width: 1200px) {
+    .container {
+        padding: clamp(32px, 3.5vw, 100px);
+    }
+}
+
+/* =========================
+   💬 TITRE
+   ========================= */
+h1 {
+    margin: 0 0 clamp(18px, 3vw, 40px);
+    font-weight: 300;
+    font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+    color: var(--text-color);
+    letter-spacing: -0.02em;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Texte secondaire / sous-titre */
+h2,
+p.lead {
+    color: var(--muted-color);
+    margin-top: 0.4rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+/* =========================
+   🔘 BOUTONS (accessible & responsive)
+   ========================= */
+button,
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--card-background);
+    border: none;
+    padding: clamp(10px, 1.8vw, 16px) clamp(14px, 3vw, 28px);
+    margin: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    min-width: 120px;
+    transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Hover / focus (accessible) */
+button:hover,
+.btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+button:active,
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.45);
+}
+
+/* Focus visible (keyboard) */
+button:focus-visible,
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.18), 0 8px 24px rgba(0, 0, 0, 0.45);
+    border-radius: 10px;
+}
+
+/* Variante secondaire (outline) */
+.btn--outline {
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: none;
+}
+
+/* =========================
+   🧭 RÉPONSIVITÉ / LAYOUT UTILE
+   ========================= */
+.actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Pour les très petits écrans, boutons prennent toute la largeur */
+@media (max-width: 420px) {
+
+    .actions .btn,
+    .actions button {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+}
+
+/* =========================
+   ACCESSIBILITÉ & PREFERENCES
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Liens */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Ombre douce pour images / media */
+.media {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Forme responsive des paddings internes */
+.section {
+    padding: clamp(12px, 3vw, 40px) 0;
+}
+
+/* Petit utilitaire pour texte clair/moins lumineux si besoin */
+.muted {
+    color: var(--muted-color);
+    font-size: 0.95rem;
+}
+
+/* =========================
+   CONSEILS D'UTILISATION
+   =========================
+   - Remplace ton ancien CSS par celui-ci.
+   - Pour revenir au thème clair côté utilisateur, ajoute .light-theme sur <html>.
+   - Ajuste --primary-color si tu veux un autre accent.
+   - Les tailles utilisent clamp() pour rester lisibles sur tout écran.
+*/

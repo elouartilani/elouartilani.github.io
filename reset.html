@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réinitialisation des préférences</title>
+    <style>
+        /* Styles minimalistes pour le feedback */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .message {
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="message">
+        <h1>Réinitialisation en cours...</h1>
+        <p>Vos préférences linguistiques sont en cours de suppression. Vous serez redirigé dans un instant.</p>
+    </div>
+
+    <script>
+        // Clé utilisée dans votre script de portail
+        const LANG_KEY = 'userPreferredLang';
+        
+        // 1. Suppression de la préférence linguistique
+        localStorage.removeItem(LANG_KEY);
+        console.log(`Préférence linguistique (${LANG_KEY}) supprimée du localStorage.`);
+
+        // 2. Redirection
+        // Définit un délai de 1.5 secondes (1500 ms) pour que l'utilisateur voie le message.
+        setTimeout(() => {
+            // Redirige vers la page d'accueil principale (celle qui affiche le portail si aucune langue n'est définie)
+            window.location.href = 'index.html'; 
+        }, 1500);
+
+    </script>
+</body>
+</html>

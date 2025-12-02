@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail de Sélection de Langue</title>
+    <link rel="stylesheet" href=".resc/.theme/index.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>
+        Veuillez choisir votre langue | Please choose your language | 
+        <span dir="rtl">الرجاء اختيار اللغة</span>
+    </h1>
+        
+        <button onclick="setLanguage('ar')">🇩🇿 Arabe</button>
+        <button onclick="setLanguage('fr')">🇫🇷 Français</button>
+        <button onclick="setLanguage('en')">🇬🇧 English</button>
+
+    </div>
+<script>
+    // 1. Définir la clé pour le localStorage
+    const LANG_KEY = 'userPreferredLang';
+
+    // 2. Définir la liste des langues valides (Liste Blanche)
+    // C'est ici que vous ajoutez ou supprimez des langues.
+    const VALID_LANGUAGES = ['fr', 'en', 'ar'];
+
+    // 3. Fonction pour enregistrer le choix et rediriger avec vérification
+    function setLanguage(langCode) {
+        // Convertir en minuscules pour la vérification
+        const code = langCode.toLowerCase();
+
+        // 🚨 VÉRIFICATION : Assurez-vous que le code est dans notre liste blanche
+        if (!VALID_LANGUAGES.includes(code)) {
+            console.error(`Code de langue invalide: ${langCode}. Le choix n'a pas été enregistré.`);
+            // Vous pourriez afficher un message à l'utilisateur ici si nécessaire
+            return; // Arrêter l'exécution de la fonction
+        }
+
+        // Si la vérification est réussie :
+        // Enregistre le code de langue dans le localStorage
+        localStorage.setItem(LANG_KEY, code);
+
+        // Redirige vers la page d'accueil dans la langue sélectionnée
+        // (Assurez-vous que les pages index-fr.html, index-en.html, index-es.html, etc., existent)
+        window.location.href = `hub-${code}.html`;
+    }
+
+    // 4. (Optionnel) Vérification au chargement
+    document.addEventListener('DOMContentLoaded', () => {
+        const storedLang = localStorage.getItem(LANG_KEY);
+        
+        // Vérifie si une langue est stockée ET si elle est valide
+        if (storedLang && VALID_LANGUAGES.includes(storedLang)) {
+            console.log(`Préférence trouvée et valide: ${storedLang}. Redirection immédiate.`);
+            window.location.href = `index-${storedLang}.html`;
+        } else if (storedLang) {
+             // Nettoie les anciennes préférences si elles sont invalides
+            localStorage.removeItem(LANG_KEY);
+            console.log('Préférence stockée invalide ou obsolète effacée. Affichage du portail.');
+        }
+        // Si aucune langue valide n'est trouvée, le portail reste affiché.
+    });
+</script>
+</body>
+</html>
