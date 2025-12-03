@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -16,8 +17,21 @@ body {
     background-image: url("img/hub_background.jpg");
 
 }
+header {
+    width: 90vw;
+    max-width: 50vw; /*mettre 50 ou 55 pour des style différent*/
+    padding-left: 0; /*ajuster padding left et right pour aligner sur le fond*/
+    padding-right: 0;
+    margin: 0 auto 2vw auto;
+    color: black;
+}
 
-/* Styles for the flex container */
+header h1 {
+    word-break: break-word;
+    margin-bottom: 0.5em;
+}
+
+
 .flex-container {
     display: flex;
     flex-wrap: wrap;
@@ -27,9 +41,9 @@ body {
     max-width: 90vw;
 }
 
-/* Styles for each button */
+
 .flex-container a {
-    flex: 1 1 15vw; /* Adjusts button width responsively */
+    flex: 1 1 15vw;
     text-align: center;
     padding: 2vw;
     /* backdrop-filter: blur(5px); */
@@ -37,14 +51,16 @@ body {
     background-color: transparent;
     color: black;
     text-decoration: none;
-    font-size: 1.2vw; /* Responsive font size */
+    font-size: 1.2vw;
     transition: background-color 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     min-width: 150px;
-  
+    border-radius: 0.25em;
+    max-width: 50vw; /*mettre 50 ou 55 pour des style différent*/
+    padding-left: 0; /*ajuster padding left et right pour aligner sur le fond*/
+    padding-right: 0;
 }
 
-/* Hover effect */
 .flex-container a:hover {
     color: antiquewhite;
     transform: scale(1.05);
@@ -64,19 +80,16 @@ kbd:hover {
 @media (max-width: 600px) {
     .flex-container {
         flex-direction: column;
-        align-items: stretch; /* Les boutons prennent toute la largeur dispo */
+        align-items: stretch;
         gap: 15px;
     }
 
     .flex-container a {
-        flex: 0 0 auto; /* Désactive le flex-basis complexe sur mobile */
+        flex: 0 0 auto;
         width: 100%;
-        padding: 1rem; /* Padding confortable pour le doigt */
-        font-size: 1.2rem; /* Taille fixe lisible sur mobile */
+        padding: 1rem;
+        font-size: 1.2rem;
         justify-content: center;
         align-items: center;
     }
-html {
-padding:10px;
-}
 }
