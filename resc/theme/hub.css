@@ -92,4 +92,7 @@ kbd:hover {
         justify-content: center;
         align-items: center;
     }
+    header {
+         max-width: 90vw; /*mettre 50 ou 55 pour des style différent*/
+    }
 }
