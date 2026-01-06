@@ -2,7 +2,7 @@
   {
     "id": 0,
     "title": "Hatsune miku la diva virtuelle",
-    "description": "Hatsune miku est une chanteuse virtuelle japonaise créée par Crypton Future Media en 2007. Elle utilise un logiciel de synthèse vocale appelé Vocaloid, développé par Yamaha Corporation, qui permet de générer des voix chantées à partir de paroles et de mélodies saisies par l'utilisateur. Hatsune miku est représentée comme une jeune fille aux cheveux longs et bleus, souvent vêtue d'une tenue futuriste. Depuis sa création, elle est devenue une icône de la culture pop japonaise et a acquis une popularité mondiale, se produisant dans des concerts virtuels en 3D et collaborant avec divers artistes et marques.",
+    "description": "Hatsune miku est une chanteuse virtuelle japonaise créée par Crypton Future Media en 2007. Elle utilise un logiciel de synthèse vocale appelé Vocaloid, développé par Yamaha Corporation, qui permet de générer des voix chantées à partir de paroles et de mélodies saisies par l'utilisateur. Hatsune miku est représentée comme une jeune fille aux cheveux longs et bleus, souvent vêtue d'une tenue futuriste. Depuis sa création, elle est devenue une icône de la culture pop japonaise et a acquis une popularité mondiale, se produisant dans des concerts virtuels en 3D et collaborant avec divers artistes et marques",
     "category": "Art",
     "language": "fr",
     "date": "2025-12-30"
@@ -18,7 +18,7 @@
   {
     "id": 2,
     "title": "Sepak Takraw",
-    "description": "Sepak Takraw is a traditional sport in Southeast Asia that combines elements of soccer and volleyball. Players use their feet, head, knees, and chest to hit a rattan ball over a net. The game is played on a court similar to a badminton court, with teams of three players each. Sepak Takraw is known for its acrobatic moves and impressive displays of agility and skill. It is especially popular in countries like Thailand, Malaysia, Indonesia, and the Philippines, where it is often played during festivals and community events.",
+    "description": "Sepak Takraw is a traditional sport in Southeast Asia that combines elements of soccer and volleyball. Players use their feet, head, knees, and chest to hit a rattan ball over a net. The game is played on a court similar to a badminton court, with teams of three players each. Sepak Takraw is known for its acrobatic moves and impressive displays of agility and skill. It is especially popular in countries like Thailand, Malaysia, Indonesia, and the Philippines, where it is often played during festivals and community events",
     "category": "Sport",
     "language": "en",
     "date": "2026-01-02"
@@ -26,7 +26,7 @@
   {
     "id": 3,
     "title": "Quarks and Gluons",
-    "description": "An introduction to the fundamental particles that make up matter and the forces that bind them together.",
+    "description": "An introduction to the fundamental particles that make up matter and the forces that bind them together",
     "category": "Science",
     "language": "en",
     "date": "2026-01-03"
@@ -37,12 +37,12 @@
     "category": "Culture",
     "language": "ar",
     "date": "2026-01-04",
-    "description": "رحلة في قلب حي القصبة العتيق بالجزائر العاصمة، حيث تلتقي الهندسة المعمارية العثمانية بالتاريخ المجيد، لتشكل لوحة فنية صامدة عبر الزمن."
+    "description": "رحلة في قلب حي القصبة العتيق بالجزائر العاصمة، حيث تلتقي الهندسة المعمارية العثمانية بالتاريخ المجيد، لتشكل لوحة فنية صامدة عبر الزمن"
   },
     {
     "id": 5,
     "title": "Le binaire c'est quoi ?",
-    "description": "Une introduction simple aux notions de binaire, bit et octet.",
+    "description": "Une introduction simple aux notions de binaire, bit et octet",
     "category": "Science",
     "language": "fr",
     "date": "2026-01-05"
