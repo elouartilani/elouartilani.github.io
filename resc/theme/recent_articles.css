@@ -1,3 +1,4 @@
+@import url(cursor.css);
 html, body {
     height: 100%;
     width: 100%; /* Force la largeur totale */
