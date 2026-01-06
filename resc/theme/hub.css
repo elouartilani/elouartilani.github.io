@@ -29,6 +29,7 @@ header {
 header h1 {
     word-break: break-word;
     margin-bottom: 0.5em;
+    font-weight: bold;
 }
 
 

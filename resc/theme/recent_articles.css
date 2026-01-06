@@ -1,0 +1,150 @@
+html, body {
+    height: 100%;
+    width: 100%; /* Force la largeur totale */
+    margin: 0;
+    padding: 0; /* On retire le padding du body pour coller aux bords */
+}
+
+body { 
+    font-family: 'Segoe UI', sans-serif; 
+    background: #f8f9fa; 
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* On crée un wrapper ou on ajuste le container pour le padding interne */
+#article-container { 
+    display: grid; 
+    /* auto-fit : étire les colonnes pour remplir 100% de la largeur */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; 
+    flex: 1 0 auto;
+    width: 100%; 
+    padding: 20px 40px; 
+    box-sizing: border-box; 
+}
+
+/* Si tu veux que le titre aussi soit bien aligné */
+h1 {
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+    width: 100%;
+}
+
+/* Card Styles */
+.card { 
+    background: white; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    display: flex; 
+    flex-direction: column;
+    height: 100%; 
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #ddd;
+    flex-shrink: 0;
+}
+
+.card-img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-img {
+    transform: scale(1.1);
+}
+
+.card-content { 
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    flex-grow: 1; 
+}
+
+/* Tags and Badges */
+.badge { 
+    background: #007bff; 
+    color: white; 
+    padding: 4px 12px; 
+    border-radius: 50px; 
+    font-size: 11px; 
+    text-transform: uppercase; 
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+
+.lang-tag { 
+    float: right; 
+    font-weight: bold; 
+    color: #adb5bd; 
+    font-size: 0.9em;
+}
+
+/* Typography */
+h3 { margin: 10px 0; }
+h3 a { color: #333; text-decoration: none; }
+h3 a:hover { color: #007bff; }
+
+p {
+    color: #636e72;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+small {
+    margin-top: auto;
+    padding-top: 15px;
+    color: #b2bec3;
+    font-weight: bold;
+}
+
+/* Pagination */
+.pagination { 
+    text-align: center; 
+    padding: 20px 0;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#page-info {
+    font-weight: bold;
+    color: #2d3436;
+}
+
+button { 
+    padding: 10px 25px; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    border: 1px solid #dfe6e9; 
+    background: white; 
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+button:hover:not(:disabled) { 
+    background: #007bff; 
+    color: white;
+    border-color: #007bff;
+}
+
+button:disabled { 
+    opacity: 0.4; 
+    cursor: not-allowed; 
+}

@@ -1,0 +1,23 @@
+@import url(cursor.css);
+@import url(sidebar.css);
+@import url(boxicons/css/boxicons.min.css);
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Pour s'assurer que la hauteur de la page prend tout l'écran */
+}
+
+.hidden {
+    display: none;
+}
+
+#configuration {
+    text-align: center;
+}
+#programings_language {
+    font-size: 30px;
+}
+/*i {
+    color:gold;
+}*/

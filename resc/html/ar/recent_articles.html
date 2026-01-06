@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>المقالات الأخيرة</title>
+    <link rel='stylesheet' href='../../theme/recent_articles-rtl.css'>
+</head>
+<body>
+
+    <h1 style="text-align: center;">استكشف مقالاتنا</h1>
+
+    <div id="article-container" class="container"></div>
+
+    <div class="pagination" style="direction: ltr;"> <button id="prev-btn">السابق</button>
+        <span id="page-info" style="margin: 0 15px;"></span>
+        <button id="next-btn">التالي</button>
+    </div>
+
+<script>
+    let allArticles = [];
+    let currentPage = 1;
+
+    // جدول المطابقة: من الإنجليزية إلى العربية
+    const categoryMap = {
+        'Other': 'أخرى',
+        'Art': 'فن',
+        'Culture': 'ثقافة',
+        'Sport': 'رياضة',
+        'Science': 'علوم'
+    };
+
+    // حساب ديناميكي: تحديد عدد المقالات حسب عرض الشاشة
+    function getDynamicLimit() {
+        const width = window.innerWidth;
+        if (width > 1600) return 6; // شاشات كبيرة جداً
+        if (width > 1200) return 6;  // كمبيوتر عادي
+        if (width > 800) return 4;   // تابلت
+        return 4;                    // هواتف
+    }
+
+    async function init() {
+        try {
+            const response = await fetch('../../bd.json');
+            allArticles = await response.json();
+            renderArticles();
+        } catch (e) { console.error("Error:", e); }
+    }
+
+    function renderArticles() {
+        const container = document.getElementById('article-container');
+        container.innerHTML = "";
+
+        const articlesPerPage = getDynamicLimit();
+        const start = (currentPage - 1) * articlesPerPage;
+        const paginated = allArticles.slice(start, start + articlesPerPage);
+
+        paginated.forEach(article => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            const displayCategory = categoryMap[article.category] || article.category;
+            const imagePath = `../../art/img/${article.id}.jpg`;
+            const articleLink = `../../art/link/${article.id}.html`;
+
+            // هيكل البطاقة مع دعم النص العربي
+            card.innerHTML = `
+                <div class="card-img-container">
+                    <img src="${imagePath}" alt="${article.title}" class="card-img" onerror="this.src='https://via.placeholder.com/300x180?text=%D9%84%D8%A7+%D8%AA%D9%84%D9%88%D8%AC%D8%AF+%D8%B5%D9%88%D8%B1%D8%A9'">
+                </div>
+                <div class="card-content" style="text-align: right;">
+                    <span class="badge">${displayCategory}</span>
+                    <span class="lang-tag">${article.language}</span>
+                    <h3><a href="${articleLink}">${article.title}</a></h3>
+                    <p>${article.description.substring(0, 400)}</p>
+                    <small>${article.date}</small>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // تحديث أرقام الصفحات
+        document.getElementById('page-info').innerText = `صفحة ${currentPage}`;
+        document.getElementById('prev-btn').disabled = currentPage === 1;
+        document.getElementById('next-btn').disabled = (start + articlesPerPage) >= allArticles.length;
+    }
+
+    // إدارة النقرات
+    document.getElementById('prev-btn').onclick = () => { 
+        if (currentPage > 1) {
+            currentPage--; 
+            renderArticles(); 
+            window.scrollTo(0,0);
+        }
+    };
+    
+    document.getElementById('next-btn').onclick = () => { 
+        const articlesPerPage = getDynamicLimit();
+        if ((currentPage * articlesPerPage) < allArticles.length) {
+            currentPage++; 
+            renderArticles(); 
+            window.scrollTo(0,0); 
+        }
+    };
+
+    window.onresize = () => renderArticles();
+
+    init();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Settings</title>
+    <link rel='stylesheet' href='../../theme/settings.css'>
+</head>
+
+<body>
+    <div class='sidebar-toggle'>☰ Menu</div>
+    <div class='container'>
+        <aside class='sidebar'>
+            <ul>
+                <li><a href="../../../hub-fr.html">↩ Portal</a></li>
+                <li><i class='bx bx-info-circle'></i> <a href='#about'>About</a></li>
+                <li><i class='bx bx-refresh'></i> <a href="#"
+                        onclick="localStorage.removeItem('userPreferredLang');window.location.href = '../../../index.html';return false;">Reset language settings</a>
+                </li>
+            </ul>
+        </aside>
+        <main class='content'>
+        <section id='about'>
+                <h1>About El Ouartilani Review</h1>
+    <ul>
+                <li>Version: 1.0.1</li>
+                <li><span id="programings_language"><i class='bx bxl-html5'></i> <i
+                            class='bx bxl-javascript'></i> <i class='bx bxl-css3'></i></span></li>
+            </ul>
+            <h2>Our mission</h2>
+            <p>El Ouartilani is an online review dedicated to culture, art, science and more. Our goal is to share knowledge and ideas with a diverse audience through captivating and informative articles.</p>
+        </section>
+        </main>
+    </div>
+
+    <script src='../../js/sidebar_show.js'></script>
+
+</body>
+
+</html>

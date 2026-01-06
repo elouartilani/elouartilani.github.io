@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>الأرشيف</title>
+    <link rel="stylesheet" href="../../theme/archive-rtl.css">
+</head>
+<body>
+
+    <div id="action-bar">
+        <a href="../../../hub-ar.html">الرئيسية</a>
+        <button onclick="showFiltersOptions()">خيارات التصفية</button>
+    </div>
+
+    <div id="advanced-filtering-options" class="hidden">
+        <h1>خيارات التصفية</h1>
+        
+        <div id="field-selector">
+            <h3>ترتيب المقالات:</h3>
+            <div class="sort-row">
+                <select id="sort-field">
+                    <option value="date">تاريخ النشر</option>
+                    <option value="title">العنوان (أبجدي)</option>
+                    <option value="id">رقم المقال (ID)</option>
+                </select>
+                <select id="sort-dir">
+                    <option value="DESC">تنازلي (الأحدث / ي-أ)</option>
+                    <option value="ASC">تصاعدي (الأقدم / أ-ي)</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="filter-selector">
+            <h3>معايير البحث:</h3>
+            
+            <div class="filter-row">
+                <label>العنوان:</label>
+                <div class="value-container">
+                    <input type="text" id="f-title" placeholder="اكتب كلمة مفتاحية...">
+                </div>
+            </div>
+
+            <div class="filter-row">
+                <label>اللغة:</label>
+                <div class="value-container">
+                    <select id="f-lang">
+                        <option value="all">جميع اللغات</option>
+                        <option value="fr">الفرنسية (FR)</option>
+                        <option value="en">الإنجليزية (EN)</option>
+                        <option value="ar">العربية (AR)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="filter-row">
+                <label>التاريخ:</label>
+                <select id="f-date-op" style="width: 80px;">
+                    <option value="=">=</option>
+                    <option value=">">></option>
+                    <option value="<"><</option>
+                    <option value=">=">>=</option>
+                    <option value="<="><=</option>
+                </select>
+                <div class="value-container">
+                    <input type="date" id="f-date-val">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button onclick="applyFilters()">تطبيق</button>
+                <button class="reset" onclick="resetFilters()">إعادة ضبط</button>
+                <button onclick="hideFiltersOptions()" style="background-color: #666;">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="article-container"></div>
+
+    <script>
+        let allArticles = [];
+        let filteredArticles = [];
+
+        async function init() {
+            try {
+                const response = await fetch('../../bd.json'); 
+                allArticles = await response.json();
+                filteredArticles = [...allArticles];
+                renderArticles();
+            } catch (e) { console.error("خطأ في تحميل البيانات:", e); }
+        }
+
+        function renderArticles() {
+            const container = document.getElementById('article-container');
+            container.innerHTML = "";
+            
+            filteredArticles.forEach(art => {
+                const card = document.createElement('div');
+                card.style = "background:white; padding:15px; margin:10px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align: right;";
+                card.innerHTML = `<strong>[${art.language.toUpperCase()}]</strong> ${art.title} - <small>${art.date}</small>`;
+                container.appendChild(card);
+            });
+        }
+
+        function applyFilters() {
+            const sTitle = document.getElementById('f-title').value.toLowerCase();
+            const sLang = document.getElementById('f-lang').value;
+            const dOp = document.getElementById('f-date-op').value;
+            const dVal = document.getElementById('f-date-val').value;
+
+            filteredArticles = allArticles.filter(item => {
+                const matchTitle = item.title.toLowerCase().includes(sTitle);
+                const matchLang = (sLang === 'all' || item.language === sLang);
+                
+                let matchDate = true;
+                if (dVal) {
+                    if (dOp === "=") matchDate = item.date === dVal;
+                    else if (dOp === ">") matchDate = item.date > dVal;
+                    else if (dOp === "<") matchDate = item.date < dVal;
+                    else if (dOp === ">=") matchDate = item.date >= dVal;
+                    else if (dOp === "<=") matchDate = item.date <= dVal;
+                }
+                return matchTitle && matchLang && matchDate;
+            });
+
+            const sField = document.getElementById('sort-field').value;
+            const sDir = document.getElementById('sort-dir').value;
+            filteredArticles.sort((a, b) => {
+                if (sDir === "ASC") return a[sField] > b[sField] ? 1 : -1;
+                return a[sField] < b[sField] ? 1 : -1;
+            });
+
+            renderArticles();
+            hideFiltersOptions();
+        }
+
+        function resetFilters() {
+            document.getElementById('f-title').value = "";
+            document.getElementById('f-lang').value = "all";
+            document.getElementById('f-date-val').value = "";
+            filteredArticles = [...allArticles];
+            renderArticles();
+        }
+
+        function showFiltersOptions() { document.getElementById('advanced-filtering-options').classList.remove('hidden'); }
+        function hideFiltersOptions() { document.getElementById('advanced-filtering-options').classList.add('hidden'); }
+
+        init();
+    </script>
+</body>
+</html>

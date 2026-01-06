@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Articles récents</title>
+    <link rel='stylesheet' href='../../theme/recent_articles.css'>
+</head>
+<body>
+
+    <h1 style="text-align: center;">Explore our articles</h1>
+
+    <div id="article-container" class="container"></div>
+
+    <div class="pagination">
+        <button id="prev-btn">Previous</button>
+        <span id="page-info" style="margin: 0 15px;"></span>
+        <button id="next-btn">Next</button>
+    </div>
+
+<script>
+    let allArticles = [];
+    let currentPage = 1;
+
+    // Table de correspondance Unique : Anglais -> Français
+    const categoryMap = {
+        'Other': 'Other',
+        'Art': 'Art',
+        'Culture': 'Culture',
+        'Sport': 'Sport',
+        'Science': 'Science'
+    };
+
+    // CALCUL DYNAMIQUE : Calcule combien d'articles peuvent tenir sur la largeur
+    function getDynamicLimit() {
+        const width = window.innerWidth;
+        if (width > 1600) return 6; // Très grands écrans
+        if (width > 1200) return 6;  // PC Classique
+        if (width > 800) return 4;   // Tablettes
+        return 4;                    // Mobiles
+    }
+
+    async function init() {
+        try {
+            const response = await fetch('../../bd.json');
+            allArticles = await response.json();
+            renderArticles();
+        } catch (e) { console.error("Error:", e); }
+    }
+
+    function renderArticles() {
+        const container = document.getElementById('article-container');
+        container.innerHTML = "";
+
+        // On ajuste la limite à chaque rendu
+        const articlesPerPage = getDynamicLimit();
+
+        const start = (currentPage - 1) * articlesPerPage;
+        const paginated = allArticles.slice(start, start + articlesPerPage);
+
+        paginated.forEach(article => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            const displayCategory = categoryMap[article.category] || article.category;
+            const imagePath = `../../art/img/${article.id}.jpg`;
+            const articleLink = `../../art/link/${article.id}.html`;
+
+            // Structure HTML optimisée pour le CSS plein écran
+            card.innerHTML = `
+                <div class="card-img-container">
+                    <img src="${imagePath}" alt="${article.title}" class="card-img" onerror="this.src='https://via.placeholder.com/300x180?text=Pas+d%27image'">
+                </div>
+                <div class="card-content">
+                    <span class="lang-tag">${article.language}</span>
+                    <span class="badge">${displayCategory}</span>
+                    <h3><a href="${articleLink}">${article.title}</a></h3>
+                    <p>${article.description.substring(0, 100)}</p>
+                    <small>${article.date}</small>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // Mise à jour de la pagination
+        document.getElementById('page-info').innerText = `Page ${currentPage}`;
+        document.getElementById('prev-btn').disabled = currentPage === 1;
+        document.getElementById('next-btn').disabled = (start + articlesPerPage) >= allArticles.length;
+    }
+
+    // Gestion des clics
+    document.getElementById('prev-btn').onclick = () => { 
+        if (currentPage > 1) {
+            currentPage--; 
+            renderArticles(); 
+            window.scrollTo(0,0);
+        }
+    };
+    
+    document.getElementById('next-btn').onclick = () => { 
+        const articlesPerPage = getDynamicLimit();
+        if ((currentPage * articlesPerPage) < allArticles.length) {
+            currentPage++; 
+            renderArticles(); 
+            window.scrollTo(0,0); 
+        }
+    };
+
+    // Si on redimensionne la fenêtre, on recalcule le nombre d'articles affichés
+    window.onresize = () => renderArticles();
+
+    init();
+</script>
+
+</body>
+</html>

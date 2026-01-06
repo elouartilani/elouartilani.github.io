@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Paramétre</title>
+    <link rel='stylesheet' href='../../theme/settings.css'>
+</head>
+
+<body>
+    <div class='sidebar-toggle'>☰ Menu</div>
+    <div class='container'>
+        <aside class='sidebar'>
+            <ul>
+                <li><a href="../../../hub-fr.html">↩ Portail</a></li>
+                <li><i class='bx bx-info-circle'></i> <a href='#about'>À propos</a></li>
+                <li><i class='bx bx-refresh'></i> <a href="#"
+                        onclick="localStorage.removeItem('userPreferredLang');window.location.href = '../../../index.html';return false;">Réinitialiser les paramétre linguistique</a>
+                </li>
+            </ul>
+        </aside>
+        <main class='content'>
+        <section id='about'>
+                <h1>À propos de la revue El Ouartilani</h1>
+    <ul>
+                <li>Version: 1.0.1</li>
+                <li><span id="programings_language"><i class='bx bxl-html5'></i> <i
+                            class='bx bxl-javascript'></i> <i class='bx bxl-css3'></i></span></li>
+            </ul>
+            <h2>Notre mission</h2>
+            <p>El Ouartilani est une revue en ligne dédiée à la culture, l'art, la science et bien plus encore. Notre
+                objectif est de partager des connaissances et des idées avec un public diversifié à travers des articles
+                captivants et informatifs.</p>
+        </section>
+        </main>
+    </div>
+
+    <script src='../../js/sidebar_show.js'></script>
+
+</body>
+
+</html>

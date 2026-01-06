@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>الإعدادات</title>
+    <link rel='stylesheet' href='../../theme/settings-rtl.css'>
+    <style>
+        /* Ajustement rapide pour la sidebar en mode RTL */
+        [dir="rtl"] .sidebar {
+            border-left: 1px solid #ddd;
+            border-right: none;
+        }
+        [dir="rtl"] .sidebar-toggle {
+            right: 10px;
+            left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='sidebar-toggle'>☰ القائمة</div>
+    <div class='container'>
+        <aside class='sidebar'>
+            <ul>
+                <li><a href="../../../hub-ar.html">↩ البوابة</a></li>
+                <li><i class='bx bx-info-circle'></i> <a href='#about'>حول المجلة</a></li>
+                <li><i class='bx bx-refresh'></i> 
+                    <a href="#" onclick="localStorage.removeItem('userPreferredLang');window.location.href = '../../../index.html';return false;">
+                        إعادة ضبط إعدادات اللغة
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <main class='content'>
+            <section id='about'>
+                <h1>حول مجلة الورثيلاني</h1>
+                <ul>
+                    <li>الإصدار: 1.0.1</li>
+                    <li>
+                        <span id="programings_language">
+                            <i class='bx bxl-html5'></i> 
+                            <i class='bx bxl-javascript'></i> 
+                            <i class='bx bxl-css3'></i>
+                        </span>
+                    </li>
+                </ul>
+                <h2>مهمتنا</h2>
+                <p>
+                    "الورثيلاني" هي مجلة إلكترونية مخصصة للثقافة والفن والعلوم وغير ذلك الكثير. 
+                    هدفنا هو مشاركة المعرفة والأفكار مع جمهور متنوع من خلال مقالات شيقة ومفيدة.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <script src='../../js/sidebar_show.js'></script>
+</body>
+
+</html>
