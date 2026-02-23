@@ -74,6 +74,8 @@ h1 {
     display: flex; 
     flex-direction: column; 
     flex-grow: 1; 
+    /* On s'assure que le contenu est bien positionné */
+    position: relative; 
 }
 
 /* Tags and Badges */
@@ -84,15 +86,23 @@ h1 {
     border-radius: 50px; 
     font-size: 11px; 
     text-transform: uppercase; 
-    align-self: flex-start;
+    
+    /* CHANGE ICI : On retire align-self pour qu'il laisse de la place à côté */
+    display: inline-block; 
+    align-self: flex-start; 
     margin-bottom: 10px;
 }
 
 .lang-tag { 
-    float: right; 
+    /* CHANGE ICI : On remplace le float par un positionnement absolu par rapport au padding */
+    position: absolute;
+    right: 20px; /* Aligné avec le padding de card-content */
+    top: 22px;   /* Aligné avec le haut du badge */
+    
     font-weight: bold; 
     color: #adb5bd; 
     font-size: 0.9em;
+    text-transform: uppercase;
 }
 
 /* Typography */
