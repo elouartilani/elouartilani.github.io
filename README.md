@@ -4,9 +4,9 @@ LICENCE DE PROPRIÉTÉ INTÉGRALE AVEC DROIT D’USAGE PUBLIC (LPI-DUP v1.0)
 
 1. Propriété
 
-Le Créateur conserve l’intégralité des droits de propriété intellectuelle sur l’œuvre intitulée :
+Le Créateur conserve l’intégralité des droits de propriété intellectuelle sur les œuvres intitulées :
 
-"[Nom du projet]"
+"[elouartilani.github.io]" "[Calculateur Plus!]"
 
 Tous les droits, titres et intérêts relatifs à l’œuvre demeurent exclusivement la propriété du Créateur.
 
